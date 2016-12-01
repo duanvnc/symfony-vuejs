@@ -2,6 +2,7 @@
     "name": "quentinrillet/symfony.vuejs",
     "license": "proprietary",
     "type": "project",
+    "description": "This project integrate vuejs to symfony",
     "autoload": {
         "psr-4": {
             "": "src/"
