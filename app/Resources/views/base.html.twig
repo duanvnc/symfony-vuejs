@@ -5,7 +5,9 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 
-
+    {% if app.environment != "dev" %}
+        <link type="text/css" href="{{ assetsWebpack('css') }}">
+    {% endif %}
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}"/>
 
 </head>
@@ -15,6 +17,9 @@
 {% block javascripts %}{% endblock %}
 {% if app.environment == "dev" %}
     <script src="http://localhost:3003/app.js"></script>
+    {% else %}
+    <script src="{{ assetsWebpack('js') }}"></script>
 {% endif %}
+
 </body>
 </html>
