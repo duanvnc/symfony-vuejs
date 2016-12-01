@@ -6,7 +6,7 @@
   "scripts": {
     "updates": "npm-check-updates -u",
     "build": "rimraf dist && webpack --config app/Resources/vuejs/build/webpack.prod.js",
-    "dev": "node app/Resources/vuejs/build/server.js",
+    "dev": "concurrently \"node app/Resources/vuejs/build/server.js\" \"php bin/console server:run\" --kill-others",
     "gh": "npm run build && gh-pages -d dist"
   },
   "author": "QuentinRillet <quentin.rillet@gmail.com>",
@@ -25,6 +25,7 @@
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-stage-2": "^6.5.0",
     "chokidar": "^1.6.0",
+    "concurrently": "^3.1.0",
     "css-loader": "^0.25.0",
     "css-mqpacker": "^5.0.1",
     "eslint": "^3.5.0",
