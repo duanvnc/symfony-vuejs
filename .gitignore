@@ -1,4 +1,5 @@
 /app/config/parameters.yml
+.DS_Store
 /build/
 /phpunit.xml
 /var/*
@@ -14,3 +15,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+.idea/
+node_modules/
+npm-debug.log
+web/dist/
+

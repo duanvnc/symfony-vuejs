@@ -7,7 +7,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+    <div id="app"></div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script src="http://localhost:3003/app.js"></script>
     </body>
 </html>

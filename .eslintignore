@@ -1,0 +1,2 @@
+app/Resources/vuejs/build/*.js
+app/Resources/vuejs/config/*.js
