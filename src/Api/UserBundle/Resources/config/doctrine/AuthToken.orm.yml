@@ -1,0 +1,20 @@
+Api\UserBundle\Entity\AuthToken:
+    type: entity
+    table: null
+    repositoryClass: Api\UserBundle\Repository\AuthTokenRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        value:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: Api\UserBundle\Entity\User
+    lifecycleCallbacks: {  }

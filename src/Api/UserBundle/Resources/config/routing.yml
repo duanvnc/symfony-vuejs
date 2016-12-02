@@ -1,0 +1,7 @@
+api_user:
+    type:     rest
+    resource: Api\UserBundle\Controller\UserController
+
+auth-tokens:
+    type:     rest
+    resource: Api\UserBundle\Controller\AuthTokenController

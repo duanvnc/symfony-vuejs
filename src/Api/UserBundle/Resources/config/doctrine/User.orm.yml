@@ -1,0 +1,25 @@
+Api\UserBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: Api\UserBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstname:
+            type: string
+            length: '100'
+        lastname:
+            type: string
+            length: '100'
+        email:
+            type: string
+            length: 255
+            unique: true
+        password:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
