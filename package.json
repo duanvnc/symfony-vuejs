@@ -5,8 +5,8 @@
   "main": "",
   "scripts": {
     "updates": "npm-check-updates -u",
-    "build": "rimraf dist && webpack --config app/Resources/vuejs/build/webpack.prod.js",
-    "dev": "concurrently \"node app/Resources/vuejs/build/server.js\" \"php bin/console server:run\" --kill-others",
+    "build": "rimraf dist && webpack --config src/AppBundle/Resources/webpack/build/webpack.prod.js",
+    "dev": "concurrently \"node src/AppBundle/Resources/webpack/build/server.js\" \"php bin/console server:run\" --kill-others",
     "gh": "npm run build && gh-pages -d dist"
   },
   "author": "QuentinRillet <quentin.rillet@gmail.com>",
@@ -39,6 +39,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.4.2",
+    "opn": "^4.0.2",
     "postcss-loader": "^0.13.0",
     "progress-bar-webpack-plugin": "^1.9.0",
     "rimraf": "^2.5.4",

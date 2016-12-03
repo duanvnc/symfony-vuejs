@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const webpack_dev = require('./webpack.dev')
 const config = require('./config')
 const compiler = webpack(webpack_dev)
+const opn = require('opn')
 const hotMiddleware = require('webpack-hot-middleware')(compiler)
 const chokidar = require('chokidar')
 
@@ -32,4 +33,6 @@ server.listen(3003, function (err) {
   }
   chokidar.watch(config.refresh).on('change', refresh)
   console.log('==> Listening on http://localhost:3003')
+  opn('http://localhost:8000')
+  opn('http://localhost:8000/api/doc')
 })

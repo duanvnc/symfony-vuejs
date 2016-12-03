@@ -7,6 +7,8 @@ Symfony-vuejs
 * ```$ composer install```
 
 ###Mode developpment
-* ```npm run dev --> run php and js server at the same time```
+* ```$ npm run dev```
+
+Launch javascript server, symfony server and open browser with homepage + documentation
 
 A Symfony project created on November 28, 2016, 11:42 am.

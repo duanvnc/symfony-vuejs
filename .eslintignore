@@ -1,2 +1,2 @@
-app/Resources/vuejs/build/*.js
-app/Resources/vuejs/config/*.js
+src/AppBundle/Resources/webpack/build/*.js
+src/AppBundle/Resources/webpack/config/*.js
