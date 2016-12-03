@@ -11,6 +11,7 @@ namespace Api\UserBundle\Controller;
 
 use Api\UserBundle\Entity\AuthToken;
 use Api\UserBundle\Entity\Credentials;
+use Api\UserBundle\Entity\User;
 use Api\UserBundle\Form\Type\CredentialsType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -53,6 +54,12 @@ class AuthTokenController extends FOSRestController
     if (!$isPasswordValid)  // Le mot de passe n'est pas correct
       return $this->invalidCredentials();
 
+    return $this->createAuthToken($user);
+  }
+
+  private function createAuthToken(User $user)
+  {
+    $em = $this->getDoctrine()->getManager();
     $authToken = new AuthToken();
     $authToken->setValue(base64_encode(random_bytes(50)));
     $authToken->setCreatedAt(new \DateTime('now'));
