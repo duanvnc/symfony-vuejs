@@ -11,3 +11,4 @@ Api\UserBundle\Entity\User:
             groups: ['user', 'preference', 'auth-token']
         preferences:
             groups: ['user']
+

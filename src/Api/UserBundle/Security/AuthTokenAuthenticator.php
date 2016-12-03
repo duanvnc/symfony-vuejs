@@ -105,5 +105,5 @@ class AuthTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
     // Si les données d'identification ne sont pas correctes, une exception est levée
     throw $exception;
   }
-
 }
+

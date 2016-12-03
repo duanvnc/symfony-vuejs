@@ -26,3 +26,4 @@ Api\UserBundle\Entity\User:
 #        password:
 #            - NotBlank: ~
 #            - Type: string
+

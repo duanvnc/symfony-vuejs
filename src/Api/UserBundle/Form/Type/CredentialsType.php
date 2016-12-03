@@ -6,7 +6,7 @@
  * Time: 19:39
  */
 
-namespace Api\UserBundle\Form;
+namespace Api\UserBundle\Form\Type;
 
 
 use Symfony\Component\Form\AbstractType;
@@ -29,3 +29,4 @@ class CredentialsType extends AbstractType
     ]);
   }
 }
+

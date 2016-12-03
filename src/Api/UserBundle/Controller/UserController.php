@@ -3,7 +3,7 @@
 namespace Api\UserBundle\Controller;
 
 use Api\UserBundle\Entity\User;
-use Api\UserBundle\Form\UserType;
+use Api\UserBundle\Form\Type\UserType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;

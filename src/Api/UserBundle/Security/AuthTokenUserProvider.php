@@ -45,3 +45,4 @@ class AuthTokenUserProvider implements UserProviderInterface
     return 'Api\UserBundle\Entity\User' === $class;
   }
 }
+

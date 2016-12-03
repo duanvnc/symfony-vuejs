@@ -9,3 +9,4 @@ Api\UserBundle\Entity\AuthToken:
             groups: ['auth-token']
         user:
             groups: ['auth-token']
+

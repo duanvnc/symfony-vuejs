@@ -11,7 +11,7 @@ namespace Api\UserBundle\Controller;
 
 use Api\UserBundle\Entity\AuthToken;
 use Api\UserBundle\Entity\Credentials;
-use Api\UserBundle\Form\CredentialsType;
+use Api\UserBundle\Form\Type\CredentialsType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -28,8 +28,6 @@ class AuthTokenController extends FOSRestController
    *    input="Api\UserBundle\Form\CredentialsType",
    *    output="Api\UserBundle\Entity\AuthToken"
    * )
-   *
-   *
    * @View(statusCode=201, serializerGroups={"auth-token"})
    * @Post("/auth-tokens")
    */
@@ -37,28 +35,23 @@ class AuthTokenController extends FOSRestController
   {
     $credentials = new Credentials();
     $form = $this->createForm(CredentialsType::class, $credentials);
-dump($form);
     $form->submit($request->request->all());
 
-    if (!$form->isValid()) {
+    if (!$form->isValid())
       return $form;
-    }
 
     $em = $this->getDoctrine()->getManager();
 
-    $user = $em->getRepository('ApiUserBundle:User')
-      ->findOneByEmail($credentials->getLogin());
+    $user = $em->getRepository('ApiUserBundle:User')->findOneByEmail($credentials->getLogin());
 
-    if (!$user) { // L'utilisateur n'existe pas
+    if (!$user)  // L'utilisateur n'existe pas
       return $this->invalidCredentials();
-    }
 
     $encoder = $this->get('security.password_encoder');
     $isPasswordValid = $encoder->isPasswordValid($user, $credentials->getPassword());
 
-    if (!$isPasswordValid) { // Le mot de passe n'est pas correct
+    if (!$isPasswordValid)  // Le mot de passe n'est pas correct
       return $this->invalidCredentials();
-    }
 
     $authToken = new AuthToken();
     $authToken->setValue(base64_encode(random_bytes(50)));
@@ -67,8 +60,6 @@ dump($form);
 
     $em->persist($authToken);
     $em->flush();
-
-
     return $authToken;
   }
 
@@ -98,3 +89,4 @@ dump($form);
     }
   }
 }
+
