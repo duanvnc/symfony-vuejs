@@ -6,6 +6,15 @@ Symfony-vuejs
 * ```$ yarn```
 * ```$ composer install```
 
+#####Utilitaire
+
+Fix all php file with psr-1 / psr-2 
+* ```$ vendor/bin/php-cs-fixer fix```
+
+Test project before commit
+* ```$ vendor/bin/grumphp run```
+
+
 ###Mode developpment
 * ```$ npm run dev```
 

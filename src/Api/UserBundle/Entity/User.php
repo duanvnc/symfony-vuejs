@@ -165,7 +165,7 @@ class User implements UserInterface
    */
   public function getRoles()
   {
-    return ['ROLE_USER'];
+      return ['ROLE_USER'];
   }
 
   /**
@@ -177,7 +177,7 @@ class User implements UserInterface
    */
   public function getSalt()
   {
-    return null;
+      return null;
   }
 
   /**
@@ -187,7 +187,7 @@ class User implements UserInterface
    */
   public function getUsername()
   {
-    return $this->email;
+      return $this->email;
   }
 
   /**
@@ -198,7 +198,7 @@ class User implements UserInterface
    */
   public function eraseCredentials()
   {
-    $this->plainPassword = null;
+      $this->plainPassword = null;
   }
 
   /**
@@ -206,7 +206,7 @@ class User implements UserInterface
    */
   public function getPlainPassword()
   {
-    return $this->plainPassword;
+      return $this->plainPassword;
   }
 
   /**
@@ -214,7 +214,6 @@ class User implements UserInterface
    */
   public function setPlainPassword($plainPassword)
   {
-    $this->plainPassword = $plainPassword;
+      $this->plainPassword = $plainPassword;
   }
 }
-

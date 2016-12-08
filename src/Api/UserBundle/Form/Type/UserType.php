@@ -9,12 +9,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
-  /**
+    /**
    * {@inheritdoc}
    */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('firstname')
+      $builder->add('firstname')
       ->add('lastname')
       ->add('email', EmailType::class)
       ->add('plainPassword');
@@ -25,7 +25,7 @@ class UserType extends AbstractType
    */
   public function configureOptions(OptionsResolver $resolver)
   {
-    $resolver->setDefaults(array(
+      $resolver->setDefaults(array(
       'data_class' => 'Api\UserBundle\Entity\User',
       'csrf_protection' => false,
     ));
@@ -36,8 +36,6 @@ class UserType extends AbstractType
    */
   public function getBlockPrefix()
   {
-    return 'api_userbundle_user';
+      return 'api_userbundle_user';
   }
-
-
 }

@@ -24,7 +24,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
    */
   public function setContainer(ContainerInterface $container = null)
   {
-    $this->container = $container;
+      $this->container = $container;
   }
 
   /**
@@ -34,16 +34,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
    */
   public function load(ObjectManager $manager)
   {
-    $user = new User();
-    $user->setEmail("johndoe@mail.com");
-    $user->setFirstname("John");
-    $user->setLastname("Doe");
-    $encoder = $this->container->get('security.password_encoder');
-    $password = $encoder->encodePassword($user, 'johndoe');
-    $user->setPassword($password);
+      $user = new User();
+      $user->setEmail("johndoe@mail.com");
+      $user->setFirstname("John");
+      $user->setLastname("Doe");
+      $encoder = $this->container->get('security.password_encoder');
+      $password = $encoder->encodePassword($user, 'johndoe');
+      $user->setPassword($password);
 
-    $manager->persist($user);
-    $manager->flush();
+      $manager->persist($user);
+      $manager->flush();
   }
 
   /**
@@ -53,6 +53,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
    */
   public function getOrder()
   {
-    return 1;
+      return 1;
   }
 }

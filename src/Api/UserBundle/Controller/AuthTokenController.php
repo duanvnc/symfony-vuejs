@@ -8,7 +8,6 @@
 
 namespace Api\UserBundle\Controller;
 
-
 use Api\UserBundle\Entity\AuthToken;
 use Api\UserBundle\Entity\Credentials;
 use Api\UserBundle\Entity\User;
@@ -23,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthTokenController extends FOSRestController
 {
-  /**
+    /**
    * @ApiDoc(
    *    description="Création d'un token pour un utilisateur",
    *    input="Api\UserBundle\Form\CredentialsType",
@@ -34,46 +33,49 @@ class AuthTokenController extends FOSRestController
    */
   public function postAuthTokensAction(Request $request)
   {
-    $credentials = new Credentials();
-    $form = $this->createForm(CredentialsType::class, $credentials);
-    $form->submit($request->request->all());
+      $credentials = new Credentials();
+      $form = $this->createForm(CredentialsType::class, $credentials);
+      $form->submit($request->request->all());
 
-    if (!$form->isValid())
-      return $form;
+      if (!$form->isValid()) {
+          return $form;
+      }
 
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $user = $em->getRepository('ApiUserBundle:User')->findOneByEmail($credentials->getLogin());
+      $user = $em->getRepository('ApiUserBundle:User')->findOneByEmail($credentials->getLogin());
 
-    if (!$user)  // L'utilisateur n'existe pas
+      if (!$user) {  // L'utilisateur n'existe pas
       return $this->invalidCredentials();
+      }
 
-    $encoder = $this->get('security.password_encoder');
-    $isPasswordValid = $encoder->isPasswordValid($user, $credentials->getPassword());
+      $encoder = $this->get('security.password_encoder');
+      $isPasswordValid = $encoder->isPasswordValid($user, $credentials->getPassword());
 
-    if (!$isPasswordValid)  // Le mot de passe n'est pas correct
+      if (!$isPasswordValid) {  // Le mot de passe n'est pas correct
       return $this->invalidCredentials();
+      }
 
-    return $this->createAuthToken($user);
+      return $this->createAuthToken($user);
   }
 
-  private function createAuthToken(User $user)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $authToken = new AuthToken();
-    $authToken->setValue(base64_encode(random_bytes(50)));
-    $authToken->setCreatedAt(new \DateTime('now'));
-    $authToken->setUser($user);
+    private function createAuthToken(User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $authToken = new AuthToken();
+        $authToken->setValue(base64_encode(random_bytes(50)));
+        $authToken->setCreatedAt(new \DateTime('now'));
+        $authToken->setUser($user);
 
-    $em->persist($authToken);
-    $em->flush();
-    return $authToken;
-  }
+        $em->persist($authToken);
+        $em->flush();
+        return $authToken;
+    }
 
-  private function invalidCredentials()
-  {
-    return \FOS\RestBundle\View\View::create(['message' => 'Invalid credentials'], Response::HTTP_BAD_REQUEST);
-  }
+    private function invalidCredentials()
+    {
+        return \FOS\RestBundle\View\View::create(['message' => 'Invalid credentials'], Response::HTTP_BAD_REQUEST);
+    }
 
   /**
    * @ApiDoc(
@@ -84,16 +86,15 @@ class AuthTokenController extends FOSRestController
    */
   public function removeAuthTokenAction(Request $request, AuthToken $authToken)
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $connectedUser = $this->get('security.token_storage')->getToken()->getUser();
+      $connectedUser = $this->get('security.token_storage')->getToken()->getUser();
 
-    if ($authToken && $authToken->getUser()->getId() === $connectedUser->getId()) {
-      $em->remove($authToken);
-      $em->flush();
-    } else {
-      throw new \Symfony\Component\HttpKernel\Exception\BadRequestHttpException();
-    }
+      if ($authToken && $authToken->getUser()->getId() === $connectedUser->getId()) {
+          $em->remove($authToken);
+          $em->flush();
+      } else {
+          throw new \Symfony\Component\HttpKernel\Exception\BadRequestHttpException();
+      }
   }
 }
-

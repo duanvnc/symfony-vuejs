@@ -13,32 +13,30 @@ use Twig_SimpleFunction;
  */
 class AppExtension extends \Twig_Extension
 {
-  public function getFunctions()
-  {
-    return array(
+    public function getFunctions()
+    {
+        return array(
       new Twig_SimpleFunction('assetsWebpack', array($this, 'assetsWebpack')),
     );
-  }
-
-  public function assetsWebpack($type)
-  {
-
-    try{
-      $array = json_decode(file_get_contents('./dist/assets.json'),true);
-    }catch (FileException $exception) {
-      return $exception;
     }
 
-    if($type != 'js' && $type != 'css') {
-      $type = 'js';
+    public function assetsWebpack($type)
+    {
+        try {
+            $array = json_decode(file_get_contents('./dist/assets.json'), true);
+        } catch (FileException $exception) {
+            return $exception;
+        }
+
+        if ($type != 'js' && $type != 'css') {
+            $type = 'js';
+        }
+
+        return 'dist/'.$array['app'][$type];
     }
 
-    return 'dist/'.$array['app'][$type];
-  }
-
-  public function getName()
-  {
-    return 'app_extension';
-  }
+    public function getName()
+    {
+        return 'app_extension';
+    }
 }
-

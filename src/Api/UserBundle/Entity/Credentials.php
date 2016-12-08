@@ -8,31 +8,29 @@
 
 namespace Api\UserBundle\Entity;
 
-
 class Credentials
 {
-  protected $login;
+    protected $login;
 
-  protected $password;
+    protected $password;
 
-  public function getLogin()
-  {
-    return $this->login;
-  }
+    public function getLogin()
+    {
+        return $this->login;
+    }
 
-  public function setLogin($login)
-  {
-    $this->login = $login;
-  }
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
 
-  public function getPassword()
-  {
-    return $this->password;
-  }
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
-  public function setPassword($password)
-  {
-    $this->password = $password;
-  }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
 }
-

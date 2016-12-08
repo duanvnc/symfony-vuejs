@@ -6,10 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-  private $client = null;
+    private $client = null;
 
-  public function setUp()
-  {
-    $this->client = static::createClient();
-  }
+    public function setUp()
+    {
+        $this->client = static::createClient();
+    }
 }

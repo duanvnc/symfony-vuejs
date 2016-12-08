@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends FOSRestController
 {
-  /**
+    /**
    * @ApiDoc(
    *    description="Récupère les informations d'un utilisateur",
    *    resource=true,
@@ -32,11 +32,12 @@ class UserController extends FOSRestController
    * @Get("/user/{user}")
    * @View()
    */
-  public function getUserAction(Request $request, User $user){
-    if(empty($user)){
-      return \FOS\RestBundle\View\View::create(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
-    }
-    return $user;
+  public function getUserAction(Request $request, User $user)
+  {
+      if (empty($user)) {
+          return \FOS\RestBundle\View\View::create(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+      }
+      return $user;
   }
 
 
@@ -53,24 +54,24 @@ class UserController extends FOSRestController
    */
   public function postUsersAction(Request $request)
   {
-    $user = new User();
-    $form = $this->createForm(UserType::class, $user, ['validation_groups'=>['Default', 'New']]);
+      $user = new User();
+      $form = $this->createForm(UserType::class, $user, ['validation_groups'=>['Default', 'New']]);
 
-    $form->submit($request->request->all());
+      $form->submit($request->request->all());
 
-    if ($form->isValid()) {
-      $encoder = $this->get('security.password_encoder');
+      if ($form->isValid()) {
+          $encoder = $this->get('security.password_encoder');
       // le mot de passe en claire est encodé avant la sauvegarde
       $encoded = $encoder->encodePassword($user, $user->getPlainPassword());
-      $user->setPassword($encoded);
+          $user->setPassword($encoded);
 
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($user);
-      $em->flush();
-      return $user;
-    } else {
-      return $form;
-    }
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($user);
+          $em->flush();
+          return $user;
+      } else {
+          return $form;
+      }
   }
 
   /**
@@ -84,7 +85,7 @@ class UserController extends FOSRestController
    */
   public function updateUserAction(Request $request, User $user)
   {
-    return $this->updateUser($request, $user, true);
+      return $this->updateUser($request, $user, true);
   }
 
   /**
@@ -98,28 +99,28 @@ class UserController extends FOSRestController
    */
   public function patchUserAction(Request $request, User $user)
   {
-    return $this->updateUser($request,$user, false);
+      return $this->updateUser($request, $user, false);
   }
 
 
-  private function updateUser(Request $request,User $user,  $clearMissing)
-  {
-    if (empty($user)) {
-      return \FOS\RestBundle\View\View::create(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
-    }
+    private function updateUser(Request $request, User $user, $clearMissing)
+    {
+        if (empty($user)) {
+            return \FOS\RestBundle\View\View::create(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
 
-    $form = $this->createForm(UserType::class, $user);
-    $form->submit($request->request->all(), $clearMissing);
+        $form = $this->createForm(UserType::class, $user);
+        $form->submit($request->request->all(), $clearMissing);
 
-    if ($form->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($user);
-      $em->flush();
-      return $user;
-    } else {
-      return $form;
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $user;
+        } else {
+            return $form;
+        }
     }
-  }
 
 
   /**
@@ -132,12 +133,10 @@ class UserController extends FOSRestController
    */
   public function removeUserAction(Request $request, User $user)
   {
-    $em = $this->getDoctrine()->getManager();
-    if ($user) {
-      $em->remove($user);
-      $em->flush();
-    }
+      $em = $this->getDoctrine()->getManager();
+      if ($user) {
+          $em->remove($user);
+          $em->flush();
+      }
   }
-
-
 }

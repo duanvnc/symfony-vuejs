@@ -18,4 +18,5 @@ node_modules/
 npm-debug.log
 web/dist/
 yarn-error.log
+.php_cs.cache
 
