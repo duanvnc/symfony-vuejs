@@ -12,12 +12,13 @@ Fix all php file with psr-1 / psr-2
 * ```$ vendor/bin/php-cs-fixer fix```
 
 Test project before commit
-* ```$ vendor/bin/grumphp run```
+* ```$ composer tests```
 
 
 ###Mode developpment
+Launch javascript server, symfony server and open browser with homepage + documentation
 * ```$ npm run dev```
 
-Launch javascript server, symfony server and open browser with homepage + documentation
+
 
 A Symfony project created on November 28, 2016, 11:42 am.

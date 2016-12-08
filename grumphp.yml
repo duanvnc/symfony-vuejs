@@ -7,3 +7,11 @@ parameters:
     tasks:
         phplint: ~
         phpcsfixer: ~
+        yamllint: ~
+        jsonlint: ~
+        composer:
+            file: ./composer.json
+        #doctrine_orm: ~
+        securitychecker:
+            lockfile: ./composer.lock
+
