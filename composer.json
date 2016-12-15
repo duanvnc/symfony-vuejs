@@ -41,7 +41,8 @@
         "ocramius/proxy-manager": "^2.0",
         "jakub-onderka/php-parallel-lint": "^0.9.2",
         "friendsofphp/php-cs-fixer": "^2.0",
-        "sensiolabs/security-checker": "^3.0"
+        "sensiolabs/security-checker": "^3.0",
+        "phpunit/phpunit": "5.5.*"
     },
     "scripts": {
         "symfony-scripts": [
@@ -63,6 +64,9 @@
         ],
         "fixphp": [
             "vendor/bin/php-cs-fixer fix ./src"
+        ],
+        "phpunit": [
+            "vendor/bin/phpunit"
         ]
     },
     "extra": {

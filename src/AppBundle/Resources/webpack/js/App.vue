@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <navbar></navbar>
     <img src="img/logo.png">
     <hello></hello>
   </div>
@@ -7,11 +8,13 @@
 
 <script>
 import Hello from './components/Hello'
+import Navbar from './components/navigation/navbar.vue'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Hello,
+    Navbar
   }
 }
 </script>

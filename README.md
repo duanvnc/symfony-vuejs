@@ -14,6 +14,9 @@ Fix all php file with psr-1 / psr-2
 Test project before commit
 * ```$ composer tests```
 
+Lancer les tests unitaires
+* ```$ composer phpunit```
+
 
 ###Mode developpment
 Launch javascript server, symfony server and open browser with homepage + documentation

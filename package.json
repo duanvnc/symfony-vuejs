@@ -6,13 +6,14 @@
   "scripts": {
     "updates": "npm-check-updates -u",
     "build": "rimraf dist && webpack --config src/AppBundle/Resources/webpack/build/webpack.prod.js",
-    "dev": "concurrently \"node src/AppBundle/Resources/webpack/build/server.js\" \"php bin/console server:run\" --kill-others",
+    "dev": "concurrently \"node src/AppBundle/Resources/webpack/build/server.js\" \"php bin/console server:run 0.0.0.0\" --kill-others",
     "gh": "npm run build && gh-pages -d dist"
   },
   "author": "QuentinRillet <quentin.rillet@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.1.1",
+    "bootstrap-sass": "^3.3.7",
+    "jquery": "^2.2.4",
     "vue": "^2.0.0-rc.4"
   },
   "devDependencies": {
@@ -38,17 +39,17 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
-    "node-sass": "^3.4.2",
+    "node-sass": "^3.13.1",
     "opn": "^4.0.2",
     "postcss-loader": "^0.13.0",
     "progress-bar-webpack-plugin": "^1.9.0",
     "rimraf": "^2.5.4",
-    "sass-loader": "^4.0.2",
+    "sass-loader": "^4.1.0",
     "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-loader": "^9.4.2",
-    "webpack": "^1.13.2",
+    "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.13.0"
   }
