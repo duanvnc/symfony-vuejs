@@ -25,7 +25,6 @@ security:
             security: false
 
         main:
-
             pattern: ^/api
             stateless: true
             simple_preauth:

@@ -25,8 +25,9 @@ class AuthTokenController extends FOSRestController
     /**
    * @ApiDoc(
    *    description="Création d'un token pour un utilisateur",
-   *    input="Api\UserBundle\Form\CredentialsType",
-   *    output="Api\UserBundle\Entity\AuthToken"
+   *    input="Api\UserBundle\Form\Type\CredentialsType",
+   *    output="Api\UserBundle\Entity\AuthToken",
+   *    section = "Security"
    * )
    * @View(statusCode=201, serializerGroups={"auth-token"})
    * @Post("/auth-tokens")
@@ -80,6 +81,7 @@ class AuthTokenController extends FOSRestController
   /**
    * @ApiDoc(
    *    description="Déconnexion d'un utilisateur",
+   *    section = "Security"
    * )
    * @View(statusCode=Response::HTTP_NO_CONTENT)
    * @Delete("/auth-tokens/{authToken}")

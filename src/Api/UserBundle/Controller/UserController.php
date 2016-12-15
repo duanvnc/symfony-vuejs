@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends FOSRestController
 {
+
+
     /**
    * @ApiDoc(
    *    description="Récupère les informations d'un utilisateur",
@@ -27,7 +29,15 @@ class UserController extends FOSRestController
    *         404={
    *           "Returned when the user is not found"
    *         }
-   *    }
+   *    },
+   *    headers={
+   *        {
+   *            "name": "X-Auth-Token",
+   *            "description": "Authorization key",
+   *            "required": true
+   *        }
+   *    },
+   *   section = "Security"
    * )
    * @Get("/user/{user}")
    * @View()
@@ -40,14 +50,42 @@ class UserController extends FOSRestController
       return $user;
   }
 
+  /**
+   * @ApiDoc(
+   *    description="Récupère les informations d'un utilisateur",
+   *    resource=true,
+   *    statusCodes={
+   *         200="Returned when successful"
+   *    },
+   *    headers={
+   *        {
+   *            "name": "X-Auth-Token",
+   *            "description": "Authorization key",
+   *            "required": true
+   *        }
+   *    },
+   *   section = "Security"
+   * )
+   * @Get("/users")
+   * @View()
+   *
+   * @param Request $request
+   * @return User[]|array
+   */
+  public function getUsersAction(Request $request)
+  {
+      $em = $this->getDoctrine()->getManager();
+      return $em->getRepository('ApiUserBundle:User')->findAll();
+  }
+
 
   /**
    * @ApiDoc(
    *    description="Ajoute un utilisateur",
-   *    input="Api\UserBundle\Form\UserType",
+   *    input="Api\UserBundle\Form\Type\UserType",
    *    output="Api\UserBundle\Entity\User",
-   *    resource=true
-   *
+   *    resource=true,
+   *    section = "Security"
    * )
    * @View(statusCode=201, serializerGroups={"user"})
    * @Post("/user")
@@ -78,7 +116,8 @@ class UserController extends FOSRestController
    * @ApiDoc(
    *    description="Met à jour un utilisateur",
    *    input="Api\UserBundle\Form\UserType",
-   *    output="Api\UserBundle\Entity\User"
+   *    output="Api\UserBundle\Entity\User",
+   *    section = "Security"
    * )
    * @View()
    * @Put("/user/{user}")
@@ -92,7 +131,8 @@ class UserController extends FOSRestController
    * @ApiDoc(
    *    description="Met à jour partiellement un utilisateur",
    *    input="Api\UserBundle\Form\UserType",
-   *    output="Api\UserBundle\Entity\User"
+   *    output="Api\UserBundle\Entity\User",
+   *    section = "Security"
    * )
    * @View()
    * @Patch("/user/{user}")
@@ -126,7 +166,7 @@ class UserController extends FOSRestController
   /**
    * @ApiDoc(
    *    description="Supprime un utilisateur",
-   *
+   *    section = "Security"
    * )
    * @View(statusCode=Response::HTTP_NO_CONTENT)
    * @Delete("/user/{user}")

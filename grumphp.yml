@@ -1,9 +1,9 @@
 parameters:
     bin_dir: "./vendor/bin"
     git_dir: "."
-    ascii:
-        failed: ~
-        succeeded: ~
+    #ascii:
+    #    failed: ~
+    #    succeeded: ~
     tasks:
         phplint: ~
         phpcsfixer: ~
