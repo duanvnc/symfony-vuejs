@@ -2,7 +2,6 @@
 
 namespace AppBundle\Twig;
 
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Twig_SimpleFunction;
 
