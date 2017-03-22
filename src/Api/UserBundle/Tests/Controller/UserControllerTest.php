@@ -12,4 +12,9 @@ class UserControllerTest extends WebTestCase
     {
         $this->client = static::createClient();
     }
+
+    public function testTmp()
+    {
+        $this->assertEquals(200, 200);
+    }
 }

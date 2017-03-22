@@ -4,9 +4,8 @@
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
-
     {% if app.environment != "dev" %}
-        <link type="text/css" href="{{ assetsWebpack('css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ assetsWebpack('css') }}">
     {% endif %}
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}"/>
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Twig_SimpleFunction;
 
@@ -23,7 +24,7 @@ class AppExtension extends \Twig_Extension
     public function assetsWebpack($type)
     {
         try {
-            $array = json_decode(file_get_contents('./dist/assets.json'), true);
+            $array = json_decode(file_get_contents('dist/assets.json'), true);
         } catch (FileException $exception) {
             return $exception;
         }
@@ -32,7 +33,7 @@ class AppExtension extends \Twig_Extension
             $type = 'js';
         }
 
-        return 'dist/'.$array['app'][$type];
+        return '/dist'.$array['app'][$type];
     }
 
     public function getName()
